@@ -8,14 +8,11 @@ Original file is located at
 """
 
 import streamlit as st
-from final backend import answer_question  # assuming backend.py is in the same folder
-
+from final backend import answer_question 
 st.set_page_config(page_title="📘 PDF Q&A", layout="centered")
 st.title("📘 Ask Questions from PDF")
 st.markdown("PDF Used: *Nonfiction Reading Test Black Friday.pdf*")
-
 query = st.text_input("Enter your question:")
-
 if query:
     with st.spinner("Finding answer..."):
         answer = answer_question(query)
