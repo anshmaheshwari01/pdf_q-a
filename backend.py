@@ -7,11 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1PN2SBEXsNNwH5buvazw4AdfAj_VkP1jU
 """
 
-pip install langchain langchain-community langchainhub chromadb pypdf groq pymupdf
-
-pip install --upgrade langchain
-
-!pip install -U langchain-groq
 
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
