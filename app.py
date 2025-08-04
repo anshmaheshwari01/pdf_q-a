@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import streamlit as st
-import backend
+from final_backend import answer_question
 st.set_page_config(page_title="📘 PDF Q&A", layout="centered")
 st.title("📘 Ask Questions from PDF")
 st.markdown("PDF Used: *Nonfiction Reading Test Black Friday.pdf*")
