@@ -1,0 +1,42 @@
+# app.py
+import streamlit as st
+from langchain_community.document_loaders import PyMuPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from transformers import pipeline
+
+@st.cache_resource(show_spinner="Loading PDF and building model...")
+def initialize_qa():
+    loader = PyMuPDFLoader("Nonfiction Reading Test Black Friday.pdf")
+    documents = loader.load()
+
+    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    chunks = splitter.split_documents(documents)
+
+    embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    db = Chroma.from_documents(chunks, embedding=embedding)
+    retriever = db.as_retriever()
+
+    qa_pipeline = pipeline("question-answering", model="deepset/roberta-base-squad2")
+    return retriever, qa_pipeline
+
+st.set_page_config(page_title="📄 PDF Q/A Chatbot", layout="centered")
+st.title("📘 Ask Questions from the Black Friday PDF")
+
+retriever, qa_pipeline = initialize_qa()
+query = st.text_input("❓ Ask your question here:")
+
+if st.button("Get Answer") and query:
+    with st.spinner("🔍 Finding the answer..."):
+        docs = retriever.get_relevant_documents(query)
+        context = "\n\n".join(doc.page_content for doc in docs[:3])
+
+        if not context.strip():
+            st.warning("❌ No relevant content found.")
+        else:
+            result = qa_pipeline({
+                "question": query,
+                "context": context
+            })
+            st.success(f"🤖 Answer: {result['answer']}")
