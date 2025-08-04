@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import streamlit as st
-from pdf_qa_streamlit.final_backend import answer_question  # assuming backend.py is in the same folder
+from final_backend import answer_question  # assuming backend.py is in the same folder
 
 st.set_page_config(page_title="📘 PDF Q&A", layout="centered")
 st.title("📘 Ask Questions from PDF")
