@@ -23,11 +23,11 @@ Original file is located at
 # !pip install --upgrade langchain
 # !pip install -U langchain-groq
 
-#from langchain_community.document_loaders import PyMuPDFLoader
-#from langchain.text_splitter import RecursiveCharacterTextSplitter
-#from langchain_community.embeddings import HuggingFaceEmbeddings
-#from langchain_community.vectorstores import Chroma
-#from transformers import pipeline
+from langchain_community.document_loaders import PyMuPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from transformers import pipeline
 
 # Load and prepare PDF data
 loader = PyMuPDFLoader("Nonfiction Reading Test Black Friday.pdf")
