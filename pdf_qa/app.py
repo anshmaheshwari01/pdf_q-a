@@ -9,7 +9,7 @@ Original file is located at
 
 # app.py
 import streamlit as st
-from qa_engine import PDF_QA
+import Backend
 
 st.set_page_config(page_title="📄 PDF Q/A Chatbot")
 
