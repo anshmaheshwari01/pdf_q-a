@@ -1,9 +1,0 @@
-streamlit
-langchain
-langchain-community
-chromadb
-transformers
-torch
-sentence-transformers
-pypdf
-PyMuPDF
