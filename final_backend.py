@@ -15,6 +15,9 @@ pip install --upgrade langchain
 
 
 
+# -*- coding: utf-8 -*-
+"""backend.py"""
+
 # Install packages if running in Colab (remove if not needed)
 # !pip install langchain langchain-community langchainhub chromadb pypdf groq pymupdf
 # !pip install --upgrade langchain
@@ -41,7 +44,7 @@ retriever = db.as_retriever()
 qa_pipeline = pipeline("question-answering", model="deepset/roberta-base-squad2")
 
 # Callable function to be used by Streamlit UI
-def answer_question(query: str):
+def answer_question(query: str) -> str:
     docs = retriever.get_relevant_documents(query)
     context = "\n\n".join(doc.page_content for doc in docs[:3])
 
